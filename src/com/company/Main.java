@@ -1,8 +1,6 @@
 package com.company;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
     private static class Person{
@@ -41,23 +39,30 @@ public class Main {
         List<Person> thirdList = fillLists(givenNames, givenSurname, rand.nextInt(1,999999), rand.nextInt(1,3));
         thirdList.addAll(firstList);
 
-        System.out.println("-------- First list --------");
-        firstList.forEach(person -> System.out.println(person.print()));
-        System.out.println("-------- Second list --------");
-        secondList.forEach(person -> System.out.println(person.print()));
+        printSeparator("First list");
+        printData(firstList);
+        printSeparator("Second list");
+        printData(secondList);
 
-        System.out.println("-------- Union ---------");
+        printSeparator("Union");
         unionPeople(firstList, secondList);
-        System.out.println("-------- Union with the same People ---------");
+        printSeparator("Union with the same People");
         unionPeople(firstList, thirdList);
 
-        System.out.println("-------- intersection ---------");
+        printSeparator("intersection");
         intersectionPeople(firstList, thirdList);
 
-        System.out.println("-------- except ---------");
+        printSeparator("except");
         exceptPeople(firstList, secondList);
     }
 
+    private static void printSeparator(String text) {
+        System.out.println("-------- " + text + "------");
+    }
+
+    private static void printData(Iterable<Person> data) {
+        data.forEach(person -> System.out.println(person.print()));
+    }
 
     private static void exceptPeople(List<Person> firstList, List<Person> secondList) {
         Set<Person> result = new HashSet<>();
@@ -76,14 +81,14 @@ public class Main {
             }
         }
 
-        result.forEach(person -> System.out.println(person.print()));
+        printData(result);
 
 //        pomoci removeAll
 //        Set<Person> thirdSet = new HashSet<>(secondSet);
 //        thirdSet.removeAll(firstSet);
 //        firstSet.removeAll(secondSet);
 //        firstSet.addAll(thirdSet);
-//        firstSet.forEach(person -> System.out.println(person.print()));
+//        printData(firstSet);
     }
 
     private static void intersectionPeople(List<Person> firstList, List<Person> secondList) {
@@ -96,11 +101,11 @@ public class Main {
                 result.add(p);
             }
         }
-        result.forEach(person -> System.out.println(person.print()));
+        printData(result);
 
 //        pomoci retain pro set
 //        firstSet.retainAll(secondSet);
-//        firstSet.forEach(person -> System.out.println(person.print()));
+//        printData(firstSet);
     }
 
     private static void unionPeople(List<Person> firstList, List<Person> secondList) {
@@ -108,11 +113,10 @@ public class Main {
 
         result.addAll(firstList);
         result.addAll(secondList);
-        result.forEach(person -> System.out.println(person.print()));
+        printData(result);
 
 //        hezci zpusob reseni?
-//        Stream.concat(firstList.stream(), secondList.stream()).collect(Collectors.toSet())
-//                .forEach(person -> System.out.println(person.print()));
+//        printData(Stream.concat(firstList.stream(), secondList.stream()).collect(Collectors.toSet()));
     }
 
     private static List<Person> fillLists(List<String> names, List<String> surnames,
