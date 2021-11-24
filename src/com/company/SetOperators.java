@@ -1,17 +1,17 @@
 package com.company;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class SetOperators {
-    private Printer printer;
+    private final Printer printer;
 
     public SetOperators(Printer printer) {
         this.printer = printer;
     }
 
-    public void exceptPeople(List<Person> firstList, List<Person> secondList) {
+    public void exceptPeople(Collection<Person> firstList, Collection<Person> secondList) {
         Set<Person> result = new HashSet<>();
         Set<Person> firstSet = new HashSet<>(firstList);
         Set<Person> secondSet = new HashSet<>(secondList);
@@ -38,7 +38,7 @@ public class SetOperators {
 //        printData(firstSet);
     }
 
-    public void intersectionPeople(List<Person> firstList, List<Person> secondList) {
+    public void intersectionPeople(Collection<Person> firstList, Collection<Person> secondList) {
         Set<Person> result = new HashSet<>();
         Set<Person> firstSet = new HashSet<>(firstList);
         Set<Person> secondSet = new HashSet<>(secondList);
@@ -55,7 +55,7 @@ public class SetOperators {
 //        printData(firstSet);
     }
 
-    public void unionPeople(List<Person> firstList, List<Person> secondList) {
+    public void unionPeople(Collection<Person> firstList, Collection<Person> secondList) {
         Set<Person> result = new HashSet<>();
 
         result.addAll(firstList);
