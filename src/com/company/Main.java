@@ -10,9 +10,9 @@ public class Main {
         List<String> givenNames = Arrays.asList("Rikie", "Rocker", "Olon", "Qiqi");
         List<String> givenSurname = Arrays.asList("Mask", "Nuggige", "Xu", "Li");
 
-        List<Person> firstList = fillLists(givenNames, givenSurname, rand.nextInt(1,999999), rand.nextInt(1,10));
-        List<Person> secondList = fillLists(givenNames, givenSurname, rand.nextInt(1,999999), rand.nextInt(1,10));
-        List<Person> thirdList = fillLists(givenNames, givenSurname, rand.nextInt(1,999999), rand.nextInt(1,3));
+        List<Person> firstList = fillLists(givenNames, givenSurname, rand.nextInt(1,10));
+        List<Person> secondList = fillLists(givenNames, givenSurname, rand.nextInt(1,10));
+        List<Person> thirdList = fillLists(givenNames, givenSurname, rand.nextInt(1,3));
         thirdList.addAll(firstList);
 
         printer.printSeparator("First list");
@@ -33,7 +33,7 @@ public class Main {
     }
 
     private static List<Person> fillLists(List<String> names, List<String> surnames,
-                                          int idRange, int personToCreate) {
+                                          int personToCreate) {
         List<Person> result = new ArrayList<>();
         Random rand = new Random();
 
@@ -42,9 +42,12 @@ public class Main {
             int randomNameIndex = rand.nextInt(names.size());
             int randomSurnameIndex = rand.nextInt(surnames.size());
 
-            person.name = names.get(randomNameIndex);
-            person.surname = surnames.get(randomSurnameIndex);
-            person.nation_id = rand.nextInt(idRange);
+            person.setName(names.get(randomNameIndex));
+            person.setName(surnames.get(randomSurnameIndex));
+            person.setName(rand.ints('0', '9' + 1)
+                    .limit(10)
+                    .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                    .toString());
 
             result.add(person);
         }

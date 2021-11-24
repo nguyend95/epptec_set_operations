@@ -7,14 +7,15 @@ import java.util.Objects;
 
 @Getter @Setter
 public class Person {
-    public long nation_id;
-    public String name;
-    public String surname;
+    private String personalId;
+    private String name;
+    private String surname;
 
-    public String print(){
+    @Override
+    public String toString(){
         return "name: " + name +
                 "\nsurname: " + surname +
-                "\nnation id: " + nation_id +
+                "\nnation id: " + personalId +
                 "\n------------- - ------------";
     }
 
@@ -23,11 +24,11 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return nation_id == person.nation_id && Objects.equals(name, person.name) && Objects.equals(surname, person.surname);
+        return Objects.equals(personalId, person.personalId) && Objects.equals(name, person.name) && Objects.equals(surname, person.surname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nation_id, name, surname);
+        return Objects.hash(personalId, name, surname);
     }
 }
